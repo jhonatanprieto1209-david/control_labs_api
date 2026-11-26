@@ -14,8 +14,8 @@ app.use(cors());
 app.use(express.json()); 
 app.use(requestLogger); 
 app.use('/api/v1/loans', loanRoutes); 
-app.use('/api/v1/environments', salasRoutes); 
-app.use('/api/v1/users', userRoutes);
+app.use('/api/v1/salas', salasRoutes); 
+app.use('/api/v1/user', userRoutes);
 app.use('/api/v1/hardware', hardwareRoutes);
 
 app.get('/api/v1/health', (req: Request, res: Response) => {

@@ -20,6 +20,7 @@ public static createUserRole = (req: Request, res: Response): void => {
   };
 
 
+   /* PATCH */
 
    public static updateUserRolePasswordStateById = (req: Request, res: Response): void => {
     const { id } = req.params;

@@ -12,4 +12,4 @@ router.delete('/:id', UserController.deleteUserInventory);
 
 
 
-export default router;3
+export default router;

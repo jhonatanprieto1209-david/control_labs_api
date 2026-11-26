@@ -5,7 +5,7 @@ import {validateLoanPayload} from '../middlewares/validateLoan.middleware';
 const router = Router();
 
 router.get('/search', LoanController.getLoansByFilter);
-router.post('/', validateLoanPayload, LoanController.createLoan);
+router.post('/create', LoanController.createLoan);
 router.put('/:id/accept', LoanController.acceptLoanInventory);
 router.get('/:id', LoanController.getLoanById);
 
