@@ -1,39 +1,37 @@
-import express, { Request, Response } from 'express';
-import cors from 'cors';
-import { requestLogger } from './middlewares/logger.middleware';
-import { globalErrorHandler } from './middlewares/errorHandler.middleware';
-import loanRoutes from './routes/loan.routes';
-import salasRoutes from './routes/salas.routes';
-import userRoutes from './routes/user.routes';
-import hardwareRoutes from './routes/hardware.routes';
+import express, { type Request, type Response } from "express";
+import cors from "cors";
+import apiRoutes from "./routes/index.js";
+import { requestLogger } from "./middlewares/logger.middleware.js";
+import { globalErrorHandler } from "./middlewares/errorHandler.middleware.js";
 
 const app = express();
 
-app.use(cors());
 app.use(requestLogger);
-app.use(express.json());
+app.use(cors());
+app.use(express.json({ limit: "1mb" }));
 
-app.use('/api/v1/loans', loanRoutes);
-app.use('/api/v1/salas', salasRoutes);
-app.use('/api/v1/user', userRoutes);
-app.use('/api/v1/hardware', hardwareRoutes);
-
-app.get('/api/v1/health', (_req: Request, res: Response) => {
+app.get("/api/v1/health", (_req: Request, res: Response): void => {
   res.status(200).json({
-    status: 'success',
-    message: 'ControlLabs API operando correctamente',
+    status: "success",
+    message: "ControlLabs API operando correctamente",
     timestamp: new Date().toISOString()
   });
 });
 
-if (process.env.NODE_ENV !== 'production') {
-  app.get('/__test/error', (_req: Request, _res: Response, next) => {
-    next(new Error('Error de prueba'));
+app.use("/api/v1", apiRoutes);
+
+if (process.env.NODE_ENV !== "production") {
+  app.get("/__test/error", (_req, _res, next) => {
+    next(new Error("Error de prueba"));
   });
 }
 
-app.use((_req, res) => {
-  res.status(404).json({ success: false, error: 'Ruta no encontrada.' });
+app.use((_req: Request, res: Response): void => {
+  res.status(404).json({
+    success: false,
+    code: "ROUTE_NOT_FOUND",
+    error: "Ruta no encontrada."
+  });
 });
 
 app.use(globalErrorHandler);

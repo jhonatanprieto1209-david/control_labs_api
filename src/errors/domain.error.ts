@@ -1,4 +1,4 @@
-export type DomainErrorCode = 'VALIDATION_ERROR' | 'NOT_FOUND' | 'CONFLICT';
+export type DomainErrorCode = "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT";
 
 export class DomainError extends Error {
   constructor(
@@ -6,6 +6,6 @@ export class DomainError extends Error {
     message: string
   ) {
     super(message);
-    this.name = 'DomainError';
+    this.name = "DomainError";
   }
 }

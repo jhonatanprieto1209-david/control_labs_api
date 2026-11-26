@@ -1,13 +1,20 @@
 {
   "compilerOptions": {
-    "target": "ES2022",
-    "module": "CommonJS",
-    "rootDir": "./",
+    "rootDir": ".",
     "outDir": "./dist",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "target": "ES2022",
+    "lib": ["ES2022"],
+    "types": ["node"],
+    "sourceMap": true,
+    "declaration": true,
     "strict": true,
     "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitReturns": true,
+    "skipLibCheck": true
   },
-  "include": ["server.ts", "src/**/*", "src/routes/.ts"]
+  "include": ["server.ts", "prisma.config.ts", "src/**/*.ts"],
+  "exclude": ["node_modules", "dist"]
 }
