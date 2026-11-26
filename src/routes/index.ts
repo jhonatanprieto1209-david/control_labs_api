@@ -6,7 +6,7 @@ import hardwareRoutes from './hardware.routes';
 
 const router = Router();
 router.use('/loans', loanRoutes);
-router.use('/users', userRoutes);
+router.use('/user', userRoutes);
 router.use('/salas', salasRoutes);
 router.use('/hardware', hardwareRoutes);
 
